@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/dietListFragment"
+        android:title="리스트"
+        android:icon="@drawable/ic_dishes"/>
+
+    <item android:id="@+id/writeDietFragment"
+        android:title="기록"
+        android:icon="@drawable/ic_write"/>
+
+    <item android:id="@+id/statisticsFragment"
+        android:title="통계"
+        android:icon="@drawable/ic_chart"/>
+</menu>

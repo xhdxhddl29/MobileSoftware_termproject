@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path
+        name="yumup_image"
+        path="Android/data/com.example.yumup/files/Pictures" />
+    <external-path
+        name="pinterview_video"
+        path="Android/data/com.example.yumup/files/Movies"/>
+    <external-path
+        name="external"
+        path="."/>
+    <files-path
+        name="files"
+        path="."/>
+</paths>

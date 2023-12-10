@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="category"
+            type="String" />
+        <variable
+            name="calories"
+            type="Float" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textview_calories_statistics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pyeongchang_bold"
+            android:text="@{`• ` + category + ` :`}"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="• 일 평균 섭취 칼로리"/>
+
+        <TextView
+            android:id="@+id/textview_calories_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/pyeongchang_bold"
+            android:text="@{String.valueOf(calories) + `kcal`}"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textview_calories_statistics"
+            app:layout_constraintStart_toEndOf="@id/textview_calories_statistics"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="300kcal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:background="@drawable/shape_no_stroke_8dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="식단을 삭제하시겠습니까?"
+            android:layout_marginTop="20dp"
+            android:lineSpacingExtra="5dp"
+            android:fontFamily="@font/pyeongchang_bold"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_delete_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:fontFamily="@font/pyeongchang_regular"
+            android:background="@drawable/shape_orange_10dp"
+            android:textColor="@color/white"
+            android:paddingVertical="15dp"
+            android:layout_marginTop="25dp"
+            android:text="삭제하기"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/textview_header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textview_cancel_button"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textview_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:fontFamily="@font/pyeongchang_regular"
+            android:textColor="@color/orange"
+            android:background="@drawable/shape_orange_stroke_10dp"
+            android:paddingVertical="15dp"
+            android:layout_marginTop="25dp"
+            android:text="취소"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/textview_header"
+            app:layout_constraintStart_toEndOf="@id/textview_delete_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

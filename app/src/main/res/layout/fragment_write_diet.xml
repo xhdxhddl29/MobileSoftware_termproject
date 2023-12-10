@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.yumup.persentation.write.WriteDietViewModel" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".persentation.write.WriteDietFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageview_logo"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_note"
+                android:scaleType="centerInside"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/textview_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_bold"
+                android:textSize="22dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="15dp"
+                app:layout_constraintTop_toTopOf="@id/imageview_logo"
+                app:layout_constraintStart_toEndOf="@id/imageview_logo"
+                app:layout_constraintBottom_toBottomOf="@id/imageview_logo"
+                android:text="식단 기록하기"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageview_diet"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="30dp"
+                setImageUrl="@{viewModel.foodImage}"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Rounded10dp"
+                android:background="@drawable/shape_darkgray_stroke_10dp"
+                android:layout_marginHorizontal="20dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toBottomOf="@id/imageview_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/textview_empty_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_regular"
+                android:text="음식 사진을 추가해주세요!"
+                android:textColor="@color/dark_gray"
+                android:textSize="14dp"
+                android:visibility="@{viewModel.foodImage.blank ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/imageview_diet"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                app:layout_constraintEnd_toEndOf="@id/imageview_diet"
+                app:layout_constraintTop_toTopOf="@id/imageview_diet"/>
+
+            <TextView
+                android:id="@+id/textview_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_bold"
+                android:textSize="14dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@id/imageview_diet"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                android:text="날짜"/>
+
+            <TextView
+                android:id="@+id/textview_date_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_regular"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp"
+                android:text="@{viewModel.selectedDate}"
+                android:paddingBottom="5dp"
+                android:background="@drawable/shape_green_underline"
+                app:layout_constraintTop_toBottomOf="@id/textview_date"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                app:layout_constraintEnd_toEndOf="@id/imageview_diet"/>
+
+            <TextView
+                android:id="@+id/textview_food_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_bold"
+                android:textSize="14dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@id/textview_date_value"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                android:text="음식 이름"/>
+
+            <EditText
+                android:id="@+id/edittext_food_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_regular"
+                android:textSize="14dp"
+                android:hint="어떤 음식을 드셨나요?"
+                android:layout_marginTop="5dp"
+                android:inputType="text"
+                android:text="@={viewModel.foodName}"
+                android:paddingBottom="5dp"
+                android:background="@drawable/shape_green_underline"
+                app:layout_constraintTop_toBottomOf="@id/textview_food_name"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                app:layout_constraintEnd_toEndOf="@id/imageview_diet"/>
+
+            <TextView
+                android:id="@+id/textview_food_estimate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_bold"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/edittext_food_name"
+                app:layout_constraintStart_toStartOf="@id/scrollview_place"
+                android:text="평가"/>
+
+            <EditText
+                android:id="@+id/edittext_food_estimate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_regular"
+                android:textSize="14dp"
+                android:hint="오늘 방문한 식당의 평가를 입력해주세요."
+                android:text="@={viewModel.estimate}"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/shape_green_underline"
+                app:layout_constraintTop_toBottomOf="@id/textview_food_estimate"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                app:layout_constraintEnd_toEndOf="@id/imageview_diet"/>
+
+
+            <TextView
+                android:id="@+id/textview_food_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_bold"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/edittext_food_estimate"
+                app:layout_constraintStart_toStartOf="@id/scrollview_place"
+                android:text="가격"/>
+
+            <EditText
+                android:id="@+id/edittext_food_cost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_regular"
+                android:textSize="14dp"
+                android:inputType="number"
+                android:text="@={viewModel.cost}"
+                android:hint="음식 가격을 입력해주세요. (원)"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/shape_green_underline"
+                app:layout_constraintTop_toBottomOf="@id/textview_food_cost"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                app:layout_constraintEnd_toEndOf="@id/imageview_diet"/>
+
+
+            <TextView
+                android:id="@+id/textview_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_bold"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/edittext_food_cost"
+                app:layout_constraintStart_toStartOf="@id/imageview_logo"
+                android:text="장소 선택하기"/>
+
+            <HorizontalScrollView
+                android:id="@+id/scrollview_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:scrollbars="none"
+                app:layout_constraintTop_toBottomOf="@id/textview_place"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <RadioGroup
+                    android:id="@+id/radiogroup_place"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_restaurant_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:button="@null"
+                        android:textSize="10dp"
+                        android:background="@drawable/selector_radio_button"
+                        android:textColor="@color/selector_radio_button"
+                        android:paddingHorizontal="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/restaurant1"
+                        android:fontFamily="@font/pyeongchang_regular"/>
+
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_restaurant_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:button="@null"
+                        android:background="@drawable/selector_radio_button"
+                        android:textColor="@color/selector_radio_button"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/restaurant2"
+                        android:fontFamily="@font/pyeongchang_regular"/>
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_restaurant_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:button="@null"
+                        android:background="@drawable/selector_radio_button"
+                        android:textColor="@color/selector_radio_button"
+                        android:paddingHorizontal="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textSize="10dp"
+                        android:text="@string/restaurant3"
+                        android:fontFamily="@font/pyeongchang_regular"/>
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_restaurant_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:button="@null"
+                        android:background="@drawable/selector_radio_button"
+                        android:textColor="@color/selector_radio_button"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/restaurant4"
+                        android:fontFamily="@font/pyeongchang_regular"/>
+
+                </RadioGroup>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textview_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyeongchang_bold"
+                android:textSize="14dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/scrollview_place"
+                app:layout_constraintStart_toStartOf="@id/imageview_logo"
+                android:text="식사 시간대 선택"/>
+
+
+            <HorizontalScrollView
+                android:id="@+id/scrollview_mealtype"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:scrollbars="none"
+                app:layout_constraintTop_toBottomOf="@id/textview_time"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <RadioGroup
+                    android:id="@+id/radiogroup_mealtype"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_breakfast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:button="@null"
+                        android:textSize="10dp"
+                        android:gravity="center"
+                        android:background="@drawable/selector_radio_button"
+                        android:textColor="@color/selector_radio_button"
+                        android:paddingHorizontal="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="아침"
+                        android:fontFamily="@font/pyeongchang_regular"/>
+
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_lunch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:background="@drawable/selector_radio_button"
+                        android:textColor="@color/selector_radio_button"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="점심"
+                        android:fontFamily="@font/pyeongchang_regular"/>
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_dinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:background="@drawable/selector_radio_button"
+                        android:textColor="@color/selector_radio_button"
+                        android:paddingHorizontal="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textSize="10dp"
+                        android:text="저녁"
+                        android:fontFamily="@font/pyeongchang_regular"/>
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_snack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:background="@drawable/selector_radio_button"
+                        android:textColor="@color/selector_radio_button"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="간식"
+                        android:fontFamily="@font/pyeongchang_regular"/>
+
+                </RadioGroup>
+
+            </HorizontalScrollView>
+
+
+            <TextView
+                android:id="@+id/textview_complete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="기록 완료하기"
+                android:layout_marginTop="50dp"
+                android:paddingVertical="14dp"
+                android:layout_marginBottom="50dp"
+                android:fontFamily="@font/pyeongchang_bold"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_green_20dp"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scrollview_mealtype"
+                app:layout_constraintStart_toStartOf="@id/imageview_diet"
+                app:layout_constraintEnd_toEndOf="@id/imageview_diet"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView >
+</layout>
